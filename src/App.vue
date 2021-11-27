@@ -39,7 +39,7 @@
         <h4>v-footer</h4>
       </v-col>
     </v-footer>
-    <v-bottom-navigation app v-model="value">
+    <v-bottom-navigation app>
       <h4>v-bottom-navigation</h4>
     </v-bottom-navigation>
   </v-app>
