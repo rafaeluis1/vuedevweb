@@ -25,13 +25,6 @@
 
     <v-main>
       <router-view></router-view>
-      <!-- <v-container fill-height>
-        <v-row justify="center" align="center">
-          <v-col cols="12" sm="4">
-            <h4>v-content</h4>
-          </v-col>
-        </v-row>
-      </v-container> -->
     </v-main>
 
     <v-footer app padless>
