@@ -26,6 +26,17 @@ export default new Vuex.Store({
             })
         }
     },
-    actions: {},
+    actions: {
+        submitPeople({ commit }, people) {
+            commit('addpeople', people)
+        }
+
+    },
+    getters: {
+        countperson({ peoples }) {
+            return peoples.length;
+        }
+
+    },
     modules: {}
 })

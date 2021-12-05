@@ -64,6 +64,9 @@
       </v-card-actions>
       <v-spacer> </v-spacer>
     </v-form>
+    <v-container>
+      <h3>TOTAL DE CADASTROS: {{ countperson }}</h3>
+    </v-container>
 
     <v-container>
       <v-data-table
@@ -77,6 +80,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     const defaultForm = Object.freeze({
@@ -94,7 +99,6 @@ export default {
         { text: "país", value: "country" },
         { text: "sexo", value: "gender" },
       ],
-      peoples: this.$store.state.peoples,
       form: Object.assign({}, defaultForm),
       rules: {
         age: [(val) => (val > 10 && val < 90) || `I don't believe you!`],
@@ -311,8 +315,19 @@ export default {
   },
 
   computed: {
+    ...mapGetters(["countperson"]),
+
     formIsValid() {
-      return this.form.first && this.form.last;
+      return (
+        this.form.first &&
+        this.form.last &&
+        this.form.age &&
+        this.form.country &&
+        this.form.gender
+      );
+    },
+    peoples() {
+      return this.$store.state.peoples;
     },
   },
 
@@ -321,8 +336,9 @@ export default {
       this.form = Object.assign({}, this.defaultForm);
       this.$refs.form.reset();
     },
+
     submit() {
-      this.$store.commit("addpeople", {
+      this.$store.dispatch("submitPeople", {
         name: this.form.first + " " + this.form.last,
         age: this.form.age,
         country: this.form.country,
